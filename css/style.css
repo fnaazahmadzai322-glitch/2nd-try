@@ -135,6 +135,8 @@ section{ position: relative; z-index: 1; padding: 120px 0; border-top: 1px solid
 .meta-tag-right{ text-align:right; }
 
 .hero-name{
+  position: relative;
+  z-index: 3;
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
@@ -142,9 +144,21 @@ section{ position: relative; z-index: 1; padding: 120px 0; border-top: 1px solid
   line-height: 0.86;
   letter-spacing: -0.01em;
   color: var(--text);
-  margin: 6px 0 8px;
+  margin: 6px 0 -0.22em;
   display:flex; flex-direction:column;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.6);
+  pointer-events: none;
 }
+
+.line-mask{ display:block; overflow:hidden; }
+.line-inner{
+  display:block;
+  transform: translateY(115%);
+  transition: transform 1s var(--ease);
+  transition-delay: .1s;
+}
+.hero-name.is-visible .line-mask:nth-child(2) .line-inner{ transition-delay: .22s; }
+.hero-name.is-visible .line-inner{ transform: translateY(0); }
 
 .hero-spread{
   display:grid;
@@ -152,6 +166,8 @@ section{ position: relative; z-index: 1; padding: 120px 0; border-top: 1px solid
   gap: 48px;
   align-items: stretch;
   margin-top: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .portrait-frame{
@@ -369,6 +385,17 @@ section{ position: relative; z-index: 1; padding: 120px 0; border-top: 1px solid
 /* ===== reveal animation ===== */
 .reveal{ opacity:0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+/* ===== word-split scroll reveal (headings + copy) ===== */
+.sr-word{ display:inline-block; overflow:hidden; vertical-align:top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.sr-word-inner{
+  display:inline-block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform .7s var(--ease), opacity .55s var(--ease);
+  transition-delay: calc(var(--i, 0) * 32ms);
+}
+.split-reveal.is-visible .sr-word-inner{ transform: translateY(0); opacity: 1; }
 
 /* ===== responsive ===== */
 @media (max-width: 980px){

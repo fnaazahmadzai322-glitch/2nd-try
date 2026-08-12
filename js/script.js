@@ -42,6 +42,32 @@ const revealObserver = new IntersectionObserver(
 );
 revealEls.forEach((el) => revealObserver.observe(el));
 
+// Word-split scroll reveal: wrap each word so it can slide/fade in individually
+document.querySelectorAll('.split-reveal').forEach((el) => {
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words
+    .map((word, i) => `<span class="sr-word" style="--i:${i}"><span class="sr-word-inner">${word}</span></span>`)
+    .join(' ');
+});
+
+const splitObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        splitObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.2, rootMargin: '0px 0px -60px 0px' }
+);
+document.querySelectorAll('.split-reveal').forEach((el) => splitObserver.observe(el));
+
+// Hero name line-mask reveal (runs once on load, hero is above the fold)
+requestAnimationFrame(() => {
+  document.querySelector('.hero-name')?.classList.add('is-visible');
+});
+
 // Copy-to-clipboard (Discord handle)
 const toast = document.getElementById('toast');
 let toastTimer;
