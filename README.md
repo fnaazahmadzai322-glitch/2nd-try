@@ -1,6 +1,6 @@
-# Sharique Aslam — Portfolio Website
+# Sharique Ahmad — Portfolio Website
 
-A premium, dark, futuristic single-page portfolio for **Sharique Aslam ([@4LizX_Web](https://x.com/4LizX_Web))** — Web3 Content Creator, Ambassador, and Community Builder.
+A premium, dark, futuristic single-page portfolio for **Sharique Ahmad ([@4LizX_Web](https://x.com/4LizX_Web))** — Web3 Content Creator, Ambassador, and Community Builder.
 
 Static site, no build step or dependencies required.
 
