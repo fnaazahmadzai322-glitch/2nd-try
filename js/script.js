@@ -1,4 +1,4 @@
-// Sharique Aslam — Portfolio interactions
+// Sharique Ahmad — Portfolio interactions
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
