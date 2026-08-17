@@ -3,42 +3,70 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sharique Ahmad | Web3 Content Creator &amp; Ambassador</title>
-<meta name="description" content="Sharique Ahmad (@4LizX_Web) — Web3 Content Creator, Ambassador, and Community Builder. Building meaningful stories around Web3, AI, and blockchain." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◆</text></svg>" />
+<title>Pagani Dubai | Private Hypercar Showroom &amp; Atelier</title>
+<meta name="description" content="Pagani Dubai — the UAE's private showroom for Pagani hypercars. Explore the collection, book a private viewing, and experience Italian art and engineering in Dubai." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M12 3 L21 20 L3 20 Z%22 fill=%22none%22 stroke=%22%2339ff8a%22 stroke-width=%222.4%22 stroke-linejoin=%22round%22/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/lenis.css" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<div class="page-bg"></div>
-<div class="page-bg-overlay"></div>
-<div class="grid-bg"></div>
+<!-- shared SVG defs: car silhouette symbol + glow filter, reused across hero / collection cards -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="carSilhouette" viewBox="0 0 1200 600">
+      <path class="car-shell" d="M140,345 L165,300 L245,250 L360,215 L430,195 L520,150 L650,145 L760,160 L840,195 L930,220 L1010,255 L1065,300 L1090,345 L1085,385 L1040,410 L950,420 L700,425 L430,420 L300,415 L210,400 L160,375 Z" fill="rgba(57,255,138,0.05)" stroke="#39ff8a" stroke-width="4" stroke-linejoin="round" />
+      <circle class="car-wheel" cx="320" cy="460" r="72" fill="#0a0b0a" stroke="#39ff8a" stroke-width="4" />
+      <circle cx="320" cy="460" r="30" fill="none" stroke="#39ff8a" stroke-width="2" opacity=".6" />
+      <circle class="car-wheel" cx="960" cy="460" r="72" fill="#0a0b0a" stroke="#39ff8a" stroke-width="4" />
+      <circle cx="960" cy="460" r="30" fill="none" stroke="#39ff8a" stroke-width="2" opacity=".6" />
+      <line x1="220" y1="405" x2="1040" y2="405" stroke="#39ff8a" stroke-width="1.5" opacity=".25" />
+    </symbol>
+    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="carbonWeave" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#101211" />
+      <rect width="5" height="10" fill="#181a19" />
+    </pattern>
+  </defs>
+</svg>
+
+<div class="bg-fixed"></div>
+<div class="bg-carbon"></div>
+<div class="bg-grid"></div>
 <div class="glow-orb glow-orb-a"></div>
 <div class="glow-orb glow-orb-b"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- ===== NAVBAR ===== -->
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
     <a href="#home" class="brand">
-      <span class="brand-mark">◆</span>
-      <span class="brand-text">4LizX<span class="accent">_Web</span></span>
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 L21 20 L3 20 Z" /></svg>
+      </span>
+      <span class="brand-text">PAGANI<small>DUBAI SHOWROOM</small></span>
     </a>
 
     <nav class="nav-links" id="navLinks">
-      <a href="#about" class="nav-link">About</a>
-      <a href="#brands" class="nav-link">Brands</a>
-      <a href="#work" class="nav-link">Work</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#testimonials" class="nav-link">Testimonials</a>
+      <a href="#collection" class="nav-link">Collection</a>
+      <a href="#reveal" class="nav-link">Reveal</a>
+      <a href="#performance" class="nav-link">Performance</a>
+      <a href="#story" class="nav-link">Story</a>
+      <a href="#showroom" class="nav-link">Showroom</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-primary btn-sm">Let's Talk</a>
+      <a href="#consultation" class="btn btn-primary btn-pill">Inquire Now</a>
     </div>
 
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -49,270 +77,464 @@
 
 <main>
 
-  <!-- ===== HERO — magazine spread ===== -->
+  <!-- ===== HERO — configurator-style reveal ===== -->
   <section class="hero" id="home">
-    <div class="container hero-container">
-
-      <div class="hero-meta reveal">
-        <div class="meta-stack">
-          <span class="meta-tag"><i></i>Web3 Content Creator</span>
-          <span class="meta-tag"><i></i>Ambassador</span>
-          <span class="meta-tag"><i></i>Community Builder</span>
-        </div>
-        <span class="meta-tag meta-tag-right"><i></i>3+ Years Web3</span>
-      </div>
-
-      <h1 class="hero-name">
-        <span class="line-mask"><span class="line-inner">SHARIQUE</span></span>
-        <span class="line-mask"><span class="line-inner">AHMAD</span></span>
-      </h1>
-
-      <div class="hero-body">
-        <p class="hero-intro split-reveal">
-          "Building meaningful stories around Web3, AI, and blockchain through
-          educational content, videos, and community-driven campaigns."
-        </p>
-
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Work With Me</a>
-          <a href="https://x.com/4LizX_Web" target="_blank" rel="noopener" class="btn btn-outline">
-            <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-6.9L4.8 22H1.7l8.1-9.3L1 2h7.1l4.9 6.3L18.9 2Zm-1.2 18h1.9L7.4 4h-2l12.3 16Z"/></svg>
-            @4LizX_Web
-          </a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-num">3+</span>
-            <span class="hero-stat-label">Years in Web3</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">100+</span>
-            <span class="hero-stat-label">Quality Videos Created</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-qr tilt reveal">
-        <img class="qr-code" src="assets/qr.svg" alt="QR code to X profile @4LizX_Web" width="56" height="56" loading="lazy" />
-        <span>Scan to<br />follow @4LizX_Web</span>
-      </div>
-
+    <div class="hero-scene">
+      <div class="hero-floor"></div>
+      <div class="hero-speedlines" id="heroSpeedlines"></div>
+      <div class="hero-vignette"></div>
     </div>
 
-    <a href="#about" class="scroll-cue" aria-label="Scroll to About">
+    <div class="hero-media">
+      <div class="media-frame">
+        <svg class="car-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet" filter="url(#neonGlow)">
+          <use href="#carSilhouette" />
+        </svg>
+        <div class="car-floor-glow"></div>
+        <!-- MEDIA SLOT: drop assets/video/hero.mp4 for a cinematic hero video (auto-detected, falls back to the wireframe scene above) -->
+        <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+          <source src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
+        <!-- MEDIA SLOT: drop assets/cars/zonda-r.jpg for real photography (auto-detected, falls back to the wireframe art above) -->
+        <img class="car-photo" src="assets/cars/zonda-r.jpg" alt="Pagani Zonda R" onerror="this.style.display='none'" />
+      </div>
+      <span class="media-note">Concept visual &mdash; drop your own photo/video in assets/ to replace</span>
+    </div>
+
+    <div class="container">
+      <div class="hero-lockup">
+        <div class="hero-copy">
+          <span class="hero-eyebrow">Official Private Showroom &middot; Dubai, UAE</span>
+          <h1 class="hero-title">
+            <span class="line-mask"><span class="line-inner hero-kicker">PAGANI</span></span>
+            <span class="line-mask"><span class="line-inner"><span class="accent">ZONDA&nbsp;R</span></span></span>
+          </h1>
+          <p class="hero-sub reveal-el">
+            Fifteen cars. One purpose. The Zonda R is track-only engineering distilled to
+            its purest form &mdash; and the flagship of our Dubai atelier.
+          </p>
+          <div class="hero-actions reveal-el">
+            <a href="#consultation" class="btn btn-primary">Reserve Private Viewing</a>
+            <a href="#collection" class="btn btn-outline">Explore Collection</a>
+          </div>
+          <div class="hero-hud reveal-el">
+            <div class="hud-chip">
+              <span class="hud-chip-label">Engine</span>
+              <span class="hud-chip-value">6.0L V12</span>
+            </div>
+            <div class="hud-chip">
+              <span class="hud-chip-label">0&ndash;100 km/h</span>
+              <span class="hud-chip-value">2.7s</span>
+            </div>
+            <div class="hud-chip">
+              <span class="hud-chip-label">Top Speed</span>
+              <span class="hud-chip-value">350 km/h</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-price reveal-el">
+          <span class="model-select-tag">Track-Only &middot; 15 Ever Made</span>
+          <div class="price-tag">
+            <span class="price-label">Starting From</span>
+            <span class="price-value">&euro;1,500,000</span>
+          </div>
+          <a href="#consultation" class="btn btn-outline btn-sm">Contact Dealer</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#collection" class="scroll-cue" aria-label="Scroll to collection">
       <span></span>
     </a>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section class="about" id="about">
+  <!-- ===== MARQUEE ===== -->
+  <section class="marquee">
+    <div class="marquee-track" aria-hidden="true">
+      <span><i>&#9650;</i> Zonda R <i>&#9650;</i> Huayra BC <i>&#9650;</i> Huayra Codalunga <i>&#9650;</i> Utopia <i>&#9650;</i> Dubai Atelier <i>&#9650;</i> Modena, Italy</span>
+      <span><i>&#9650;</i> Zonda R <i>&#9650;</i> Huayra BC <i>&#9650;</i> Huayra Codalunga <i>&#9650;</i> Utopia <i>&#9650;</i> Dubai Atelier <i>&#9650;</i> Modena, Italy</span>
+    </div>
+  </section>
+
+  <!-- ===== CAR COLLECTION ===== -->
+  <section class="collection" id="collection">
     <div class="section-line"></div>
     <div class="container">
-      <div class="section-head reveal">
-        <div class="section-tag"><span>01</span><i></i>Get to know me</div>
-        <h2 class="section-title split-reveal">About Me</h2>
+      <div class="section-head reveal-el">
+        <div class="section-tag"><span>01</span><i></i>Car Collection</div>
+        <h2 class="section-title split-reveal">The Collection</h2>
+        <p class="section-subtitle split-reveal">Four defining chapters of Pagani&rsquo;s obsession with art and engineering. Pricing shown is indicative &mdash; final configuration and price confirmed by our consultants.</p>
       </div>
 
-      <div class="about-grid">
-        <div class="about-copy reveal">
-          <p class="split-reveal">
-            I am a Web3 content creator with 3+ years of experience creating educational and
-            engaging content around blockchain, AI, crypto, and emerging technologies.
-          </p>
-          <p class="split-reveal">
-            I help Web3 projects communicate their vision through simple storytelling,
-            high-quality videos, social media campaigns, and community-focused content.
-          </p>
-          <p class="about-highlight split-reveal">
-            My goal is to simplify complex Web3 concepts and connect innovative projects
-            with real users.
-          </p>
+      <div class="collection-grid">
+
+        <article class="model-card reveal-el tilt">
+          <div class="model-card-media">
+            <span class="model-tag">Track Legend</span>
+            <span class="model-index">01</span>
+            <div class="media-frame">
+              <svg class="car-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet"><use href="#carSilhouette" /></svg>
+              <div class="car-floor-glow"></div>
+              <img class="car-photo" src="assets/cars/zonda-r.jpg" alt="Pagani Zonda R" onerror="this.style.display='none'" />
+            </div>
+            <span class="media-note">Concept visual</span>
+          </div>
+          <div class="model-card-body">
+            <div class="model-card-head">
+              <h3 class="model-name"><small>Pagani</small>Zonda R</h3>
+              <div class="model-price"><span class="price-label">From</span><span class="price-value">&euro;1.5M</span></div>
+            </div>
+            <p class="model-desc">The purest expression of Zonda philosophy &mdash; a track-only weapon built without compromise for fifteen owners worldwide.</p>
+            <div class="model-specs">
+              <div class="model-spec"><span class="model-spec-label">Power</span><span class="model-spec-value">750 HP</span></div>
+              <div class="model-spec"><span class="model-spec-label">0&ndash;100</span><span class="model-spec-value">2.7s</span></div>
+              <div class="model-spec"><span class="model-spec-label">Top Speed</span><span class="model-spec-value">350 km/h</span></div>
+            </div>
+            <div class="model-actions">
+              <a href="#consultation" class="btn btn-primary btn-sm">Inquire Now</a>
+              <a href="#reveal" class="btn btn-outline btn-sm">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="model-card reveal-el tilt">
+          <div class="model-card-media">
+            <span class="model-tag">Hypercar</span>
+            <span class="model-index">02</span>
+            <div class="media-frame">
+              <svg class="car-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet"><use href="#carSilhouette" /></svg>
+              <div class="car-floor-glow"></div>
+              <img class="car-photo" src="assets/cars/huayra-bc.jpg" alt="Pagani Huayra BC" onerror="this.style.display='none'" />
+            </div>
+            <span class="media-note">Concept visual</span>
+          </div>
+          <div class="model-card-body">
+            <div class="model-card-head">
+              <h3 class="model-name"><small>Pagani</small>Huayra BC</h3>
+              <div class="model-price"><span class="price-label">From</span><span class="price-value">&euro;2.6M</span></div>
+            </div>
+            <p class="model-desc">Named after Benny Caiola, the BC sharpens the Huayra into a razor &mdash; active aero, forged wheels, uncompromising focus.</p>
+            <div class="model-specs">
+              <div class="model-spec"><span class="model-spec-label">Power</span><span class="model-spec-value">800 HP</span></div>
+              <div class="model-spec"><span class="model-spec-label">0&ndash;100</span><span class="model-spec-value">2.8s</span></div>
+              <div class="model-spec"><span class="model-spec-label">Top Speed</span><span class="model-spec-value">372 km/h</span></div>
+            </div>
+            <div class="model-actions">
+              <a href="#consultation" class="btn btn-primary btn-sm">Inquire Now</a>
+              <a href="#reveal" class="btn btn-outline btn-sm">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="model-card reveal-el tilt">
+          <div class="model-card-media">
+            <span class="model-tag">Grand Tourer</span>
+            <span class="model-index">03</span>
+            <div class="media-frame">
+              <svg class="car-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet"><use href="#carSilhouette" /></svg>
+              <div class="car-floor-glow"></div>
+              <img class="car-photo" src="assets/cars/huayra-codalunga.jpg" alt="Pagani Huayra Codalunga" onerror="this.style.display='none'" />
+            </div>
+            <span class="media-note">Concept visual</span>
+          </div>
+          <div class="model-card-body">
+            <div class="model-card-head">
+              <h3 class="model-name"><small>Pagani</small>Huayra Codalunga</h3>
+              <div class="model-price"><span class="price-label">From</span><span class="price-value">&euro;7.4M</span></div>
+            </div>
+            <p class="model-desc">A &ldquo;long tail&rdquo; homage to Sixties endurance racers &mdash; five examples, hand-formed carbon-titanium bodywork.</p>
+            <div class="model-specs">
+              <div class="model-spec"><span class="model-spec-label">Power</span><span class="model-spec-value">840 HP</span></div>
+              <div class="model-spec"><span class="model-spec-label">0&ndash;100</span><span class="model-spec-value">3.0s</span></div>
+              <div class="model-spec"><span class="model-spec-label">Top Speed</span><span class="model-spec-value">320 km/h</span></div>
+            </div>
+            <div class="model-actions">
+              <a href="#consultation" class="btn btn-primary btn-sm">Inquire Now</a>
+              <a href="#reveal" class="btn btn-outline btn-sm">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="model-card reveal-el tilt">
+          <div class="model-card-media">
+            <span class="model-tag">Flagship</span>
+            <span class="model-index">04</span>
+            <div class="media-frame">
+              <svg class="car-art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet"><use href="#carSilhouette" /></svg>
+              <div class="car-floor-glow"></div>
+              <img class="car-photo" src="assets/cars/utopia.jpg" alt="Pagani Utopia" onerror="this.style.display='none'" />
+            </div>
+            <span class="media-note">Concept visual</span>
+          </div>
+          <div class="model-card-body">
+            <div class="model-card-head">
+              <h3 class="model-name"><small>Pagani</small>Utopia</h3>
+              <div class="model-price"><span class="price-label">From</span><span class="price-value">&euro;2.18M</span></div>
+            </div>
+            <p class="model-desc">A love letter to analogue driving &mdash; naturally-aspirated V12, manual gearbox available, sculpted for the road ahead.</p>
+            <div class="model-specs">
+              <div class="model-spec"><span class="model-spec-label">Power</span><span class="model-spec-value">864 HP</span></div>
+              <div class="model-spec"><span class="model-spec-label">0&ndash;100</span><span class="model-spec-value">3.0s</span></div>
+              <div class="model-spec"><span class="model-spec-label">Top Speed</span><span class="model-spec-value">350 km/h</span></div>
+            </div>
+            <div class="model-actions">
+              <a href="#consultation" class="btn btn-primary btn-sm">Inquire Now</a>
+              <a href="#reveal" class="btn btn-outline btn-sm">Details</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3D REVEAL — exploded engineering diagram ===== -->
+  <section class="reveal-3d" id="reveal">
+    <div class="section-line"></div>
+    <div class="container">
+      <div class="section-head center reveal-el">
+        <div class="section-tag center"><span>02</span><i></i>3D Reveal</div>
+        <h2 class="section-title split-reveal">Engineering Exposed</h2>
+        <p class="section-subtitle split-reveal">Scroll to disassemble the architecture &mdash; carbon-titanium monocoque, V12 heart, and forged suspension, layer by layer.</p>
+      </div>
+    </div>
+
+    <div class="reveal-stage" id="revealStage">
+      <div class="reveal-svg-wrap">
+        <svg viewBox="0 0 1200 620" id="explodeSvg">
+          <g id="explChassis" class="explode-part">
+            <rect x="260" y="410" width="700" height="30" rx="10" fill="url(#carbonWeave)" stroke="#39ff8a" stroke-width="3" />
+            <polygon points="140,425 260,410 260,440 150,445" fill="url(#carbonWeave)" stroke="#39ff8a" stroke-width="2.5" />
+            <polygon points="960,410 1060,425 1050,445 960,440" fill="url(#carbonWeave)" stroke="#39ff8a" stroke-width="2.5" />
+          </g>
+
+          <g id="explSuspF" class="explode-part">
+            <line x1="300" y1="415" x2="320" y2="460" stroke="#39ff8a" stroke-width="4" />
+            <line x1="340" y1="415" x2="320" y2="460" stroke="#39ff8a" stroke-width="4" />
+            <rect x="292" y="392" width="14" height="30" rx="6" fill="#0a0b0a" stroke="#39ff8a" stroke-width="2" />
+          </g>
+          <g id="explSuspR" class="explode-part">
+            <line x1="940" y1="415" x2="960" y2="460" stroke="#39ff8a" stroke-width="4" />
+            <line x1="980" y1="415" x2="960" y2="460" stroke="#39ff8a" stroke-width="4" />
+            <rect x="932" y="392" width="14" height="30" rx="6" fill="#0a0b0a" stroke="#39ff8a" stroke-width="2" />
+          </g>
+
+          <g id="explWheelF" class="explode-part">
+            <circle cx="320" cy="460" r="72" fill="#0a0b0a" stroke="#39ff8a" stroke-width="4" />
+            <circle cx="320" cy="460" r="30" fill="none" stroke="#39ff8a" stroke-width="2" opacity=".7" />
+            <circle cx="320" cy="460" r="8" fill="#39ff8a" />
+          </g>
+          <g id="explWheelR" class="explode-part">
+            <circle cx="960" cy="460" r="72" fill="#0a0b0a" stroke="#39ff8a" stroke-width="4" />
+            <circle cx="960" cy="460" r="30" fill="none" stroke="#39ff8a" stroke-width="2" opacity=".7" />
+            <circle cx="960" cy="460" r="8" fill="#39ff8a" />
+          </g>
+
+          <g id="explEngine" class="explode-part">
+            <rect x="640" y="330" width="190" height="85" rx="8" fill="#0d0f0e" stroke="#39ff8a" stroke-width="3" />
+            <line x1="655" y1="330" x2="695" y2="300" stroke="#39ff8a" stroke-width="3" />
+            <line x1="695" y1="330" x2="735" y2="300" stroke="#39ff8a" stroke-width="3" />
+            <line x1="735" y1="330" x2="775" y2="300" stroke="#39ff8a" stroke-width="3" />
+            <line x1="775" y1="330" x2="815" y2="300" stroke="#39ff8a" stroke-width="3" />
+            <path d="M830,360 C 900,360 940,380 970,410" fill="none" stroke="#39ff8a" stroke-width="2.5" opacity=".7" />
+          </g>
+
+          <g id="explInterior" class="explode-part">
+            <rect x="470" y="345" width="80" height="60" rx="14" fill="#0d0f0e" stroke="#39ff8a" stroke-width="2.5" />
+            <circle cx="440" cy="360" r="20" fill="none" stroke="#39ff8a" stroke-width="2.5" />
+          </g>
+
+          <g id="explBody" class="explode-part">
+            <path d="M140,345 L165,300 L245,250 L360,215 L430,195 L520,150 L650,145 L760,160 L840,195 L930,220 L1010,255 L1065,300 L1090,345 L1085,385 L1040,410 L950,420 L700,425 L430,420 L300,415 L210,400 L160,375 Z" fill="rgba(57,255,138,0.04)" stroke="#39ff8a" stroke-width="3.5" stroke-linejoin="round" />
+          </g>
+        </svg>
+
+        <div class="reveal-label" id="labelBody" style="left:38%; top:2%;"><span class="line"></span><span class="dot"></span><span>Carbon-Titanium Body Shell</span></div>
+        <div class="reveal-label" id="labelInterior" style="left:30%; top:32%;"><span class="line"></span><span class="dot"></span><span>Hand-Stitched Cockpit</span></div>
+        <div class="reveal-label" id="labelEngine" style="left:58%; top:22%;"><span class="line"></span><span class="dot"></span><span>6.0L Twin-Turbo V12</span></div>
+        <div class="reveal-label" id="labelChassis" style="left:44%; top:66%;"><span class="line"></span><span class="dot"></span><span>Carbon-Titanium Monocoque</span></div>
+        <div class="reveal-label" id="labelSusp" style="left:18%; top:78%;"><span class="line"></span><span class="dot"></span><span>Forged Double-Wishbone Suspension</span></div>
+        <div class="reveal-label" id="labelWheel" style="left:74%; top:84%;"><span class="line"></span><span class="dot"></span><span>Carbon-Ceramic Brakes</span></div>
+      </div>
+
+      <div class="reveal-progress">
+        <div class="reveal-progress-track"><div class="reveal-progress-fill" id="revealFill"></div></div>
+        <div class="reveal-progress-label" id="revealProgressLabel">Scroll to Disassemble</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PERFORMANCE ===== -->
+  <section class="performance" id="performance">
+    <canvas class="perf-canvas" id="sparkCanvas"></canvas>
+    <div class="perf-streaks" id="perfStreaks"></div>
+    <div class="section-line"></div>
+    <div class="container">
+      <div class="section-head reveal-el">
+        <div class="section-tag"><span>03</span><i></i>Performance</div>
+        <h2 class="section-title split-reveal">Built For Velocity</h2>
+        <p class="section-subtitle split-reveal">Figures representative of our flagship models &mdash; naturally-aspirated and turbocharged V12 power, sculpted for speed.</p>
+      </div>
+
+      <div class="perf-grid">
+        <div class="perf-stat reveal-el">
+          <div class="perf-num"><span class="count-up" data-count="864">0</span><span class="perf-unit">HP</span></div>
+          <div class="perf-label">Peak Power</div>
         </div>
+        <div class="perf-stat reveal-el">
+          <div class="perf-num"><span class="count-up" data-count="2.8" data-decimals="1">0</span><span class="perf-unit">s</span></div>
+          <div class="perf-label">0&ndash;100 km/h</div>
+        </div>
+        <div class="perf-stat reveal-el">
+          <div class="perf-num"><span class="count-up" data-count="350">0</span><span class="perf-unit">km/h</span></div>
+          <div class="perf-label">Top Speed</div>
+        </div>
+        <div class="perf-stat reveal-el">
+          <div class="perf-num"><span class="count-up" data-count="1246">0</span><span class="perf-unit">kg</span></div>
+          <div class="perf-label">Dry Weight</div>
+        </div>
+      </div>
 
-        <div class="about-stats reveal">
-          <div class="stat-card tilt">
-            <span class="stat-num">2.6K+</span>
-            <span class="stat-label">X Followers</span>
-          </div>
-          <div class="stat-card tilt">
-            <span class="stat-num">3+</span>
-            <span class="stat-label">Years Web3 Experience</span>
-          </div>
-          <div class="stat-card tilt">
-            <span class="stat-num">100+</span>
-            <span class="stat-label">Quality Video Contents Created</span>
-          </div>
-          <div class="stat-card tilt">
-            <span class="stat-num">Multiple</span>
-            <span class="stat-label">Web3 Campaign Collaborations</span>
+      <p class="perf-note reveal-el">Every Pagani is a rolling contradiction &mdash; a hand-built atelier piece engineered to outrun anything on the road. Book a performance briefing with our Dubai specialists to feel it for yourself.</p>
+    </div>
+  </section>
+
+  <!-- ===== OUR STORY ===== -->
+  <section class="story" id="story">
+    <div class="section-line"></div>
+    <div class="container story-grid">
+      <div class="story-copy">
+        <div class="section-tag reveal-el"><span>04</span><i></i>Our Story</div>
+        <h2 class="section-title split-reveal">Italian Obsession. UAE Home.</h2>
+        <p class="split-reveal">In 1992, Horacio Pagani set out to prove that a car could be a work of art without sacrificing an ounce of performance. Every chassis is still hand-laid in carbon-titanium inside the Modena atelier, every detail machined, stitched, and finished by a single craftsperson.</p>
+        <p class="split-reveal">Pagani Dubai brings that obsession to the UAE &mdash; a private showroom built for collectors who understand that true luxury is measured in millimetres, not marketing.</p>
+        <p class="story-highlight split-reveal">&ldquo;Amongst the clouds you will find the perfect union of art and science.&rdquo; &mdash; Horacio Pagani</p>
+      </div>
+      <div class="story-visual reveal-el">
+        <div class="story-seal">
+          <div class="story-seal-inner">
+            <span class="est">EST. 1992</span>
+            <span class="mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3 L21 20 L3 20 Z" /></svg>
+            </span>
+            <span class="place">MODENA &middot; DUBAI</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== BRANDS / ECOSYSTEMS ===== -->
-  <section class="brands" id="brands">
+  <!-- ===== UAE SHOWROOM ===== -->
+  <section class="showroom" id="showroom">
     <div class="section-line"></div>
     <div class="container">
-      <div class="section-head center reveal">
-        <div class="section-tag center"><span>02</span><i></i>Collaborations</div>
-        <h2 class="section-title split-reveal">Trusted By Web3 Ecosystems</h2>
-        <p class="section-subtitle split-reveal">
-          "Collaborating with innovative Web3, AI, and blockchain projects to create
-          meaningful content and community awareness."
-        </p>
+      <div class="section-head reveal-el">
+        <div class="section-tag"><span>05</span><i></i>UAE Showroom</div>
+        <h2 class="section-title split-reveal">Visit The Dubai Atelier</h2>
+        <p class="section-subtitle split-reveal">Private viewings by appointment. Walk-ins welcome during showroom hours.</p>
       </div>
 
-      <!-- logo wall -->
-      <ul class="logo-wall reveal">
-        <li>MEXC</li>
-        <li>Bitget</li>
-        <li>Perle Labs</li>
-        <li>Xora Finance</li>
-        <li>Quant AI</li>
-        <li>Midnight</li>
-        <li>Lume</li>
-        <li>Stellar</li>
-      </ul>
-
-      <!-- campaign cards -->
-      <div class="campaign-grid">
-        <article class="campaign-card reveal tilt">
-          <span class="campaign-tag">Content Campaign</span>
-          <h3 class="split-reveal">MEXC</h3>
-          <p class="split-reveal">Educational content and campaign support for one of the leading global crypto exchanges.</p>
-        </article>
-        <article class="campaign-card reveal tilt">
-          <span class="campaign-tag">Creator Campaign</span>
-          <h3 class="split-reveal">Perle Labs</h3>
-          <p class="split-reveal">Creator-driven storytelling to grow awareness and engagement for the Perle Labs ecosystem.</p>
-        </article>
-        <article class="campaign-card reveal tilt">
-          <span class="campaign-tag">Ambassador Partnership</span>
-          <h3 class="split-reveal">Xora Finance</h3>
-          <p class="split-reveal">Long-term ambassador partnership supporting content, community, and brand growth.</p>
-        </article>
-      </div>
-
-      <!-- ambassador highlights -->
-      <div class="ambassador-grid">
-        <article class="ambassador-card reveal tilt">
-          <div class="ambassador-icon">Q</div>
-          <h3>Quant AI <span>Ambassador</span></h3>
-          <p class="split-reveal">Representing and supporting the Quant AI ecosystem through content creation and community engagement.</p>
-        </article>
-        <article class="ambassador-card reveal tilt">
-          <div class="ambassador-icon">M</div>
-          <h3>Midnight <span>Ambassador</span></h3>
-          <p class="split-reveal">Supporting ecosystem awareness and educating the community about Midnight.</p>
-        </article>
-        <article class="ambassador-card reveal tilt">
-          <div class="ambassador-icon">X</div>
-          <h3>Xora Finance <span>Ambassador</span></h3>
-          <p class="split-reveal">Creating content and supporting the growth of the Xora Finance ecosystem.</p>
-        </article>
+      <div class="showroom-grid">
+        <div class="showroom-info reveal-el">
+          <div>
+            <div class="showroom-block-label">Address</div>
+            <p class="showroom-address">Pagani Dubai Showroom<br />Sheikh Zayed Road, Al Quoz<br />Dubai, United Arab Emirates</p>
+          </div>
+          <div>
+            <div class="showroom-block-label">Showroom Hours</div>
+            <div class="showroom-hours">
+              <div class="showroom-hours-row"><span>Saturday &ndash; Thursday</span><span>10:00 &ndash; 20:00</span></div>
+              <div class="showroom-hours-row"><span>Friday</span><span>14:00 &ndash; 20:00</span></div>
+              <div class="showroom-hours-row"><span>Private Viewings</span><span>By Appointment</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="showroom-block-label">Direct Contact</div>
+            <div class="showroom-contacts">
+              <a href="tel:+97144567890">+971 4 456 7890</a>
+              <a href="mailto:concierge@pagani-dubai.ae">concierge@pagani-dubai.ae</a>
+            </div>
+          </div>
+          <a class="btn btn-outline btn-block" href="https://www.google.com/maps/search/?api=1&query=Sheikh+Zayed+Road+Al+Quoz+Dubai" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+        <div class="showroom-map reveal-el">
+          <iframe src="https://maps.google.com/maps?q=Sheikh%20Zayed%20Road%2C%20Al%20Quoz%2C%20Dubai&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Pagani Dubai Showroom location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FEATURED CONTENT ===== -->
-  <section class="work" id="work">
+  <!-- ===== PRIVATE CONSULTATION ===== -->
+  <section class="consultation" id="consultation">
     <div class="section-line"></div>
     <div class="container">
-      <div class="section-head reveal">
-        <div class="section-tag"><span>03</span><i></i>Recent work</div>
-        <h2 class="section-title split-reveal">Featured Content</h2>
-        <p class="section-subtitle split-reveal">A look at recent educational and campaign content shared with the community.</p>
+      <div class="section-head center reveal-el">
+        <div class="section-tag center"><span>06</span><i></i>Private Consultation</div>
+        <h2 class="section-title split-reveal">Book A Private Viewing</h2>
+        <p class="section-subtitle split-reveal">Share a few details and our client relations team will arrange a private appointment at the Dubai atelier.</p>
       </div>
 
-      <div class="work-grid">
-        <a class="work-card reveal tilt" href="https://x.com/i/status/2073978773142376865" target="_blank" rel="noopener">
-          <img src="my%20works%20examples/233.jpg" alt="Post about ShiftRWA — tokenized stocks on-chain" loading="lazy" />
-          <span class="work-caption">ShiftRWA <i>Content Post</i></span>
-        </a>
-        <a class="work-card reveal tilt" href="https://x.com/i/status/2044344742666981548" target="_blank" rel="noopener">
-          <img src="my%20works%20examples/333liz.jpg" alt="Post about CineFlicks — watch and earn $CNF tokens" loading="lazy" />
-          <span class="work-caption">CineFlicks <i>Content Post</i></span>
-        </a>
-        <a class="work-card reveal tilt" href="https://x.com/i/status/2061293142415167853" target="_blank" rel="noopener">
-          <img src="my%20works%20examples/444.jpg" alt="Post about Lume — tokenized US stocks" loading="lazy" />
-          <span class="work-caption">Lume <i>Content Post</i></span>
-        </a>
-        <a class="work-card reveal tilt" href="https://x.com/i/status/2063823520682135677" target="_blank" rel="noopener">
-          <img src="my%20works%20examples/liz23.jpg" alt="Post about Stellar Journey to Mastery campaign" loading="lazy" />
-          <span class="work-caption">Stellar <i>Campaign Post</i></span>
-        </a>
-      </div>
-    </div>
-  </section>
+      <div class="consultation-wrap reveal-el">
+        <form class="consultation-form" id="consultationForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+971 5X XXX XXXX" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" required />
+            </div>
+            <div class="field">
+              <label for="model">Preferred Model</label>
+              <select id="model" name="model" required>
+                <option value="" disabled selected>Select a model</option>
+                <option>Pagani Zonda R</option>
+                <option>Pagani Huayra BC</option>
+                <option>Pagani Huayra Codalunga</option>
+                <option>Pagani Utopia</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date" />
+            </div>
+            <div class="field">
+              <label for="time">Preferred Time</label>
+              <select id="time" name="time">
+                <option value="" disabled selected>Select a time</option>
+                <option>Morning (10:00 &ndash; 13:00)</option>
+                <option>Afternoon (13:00 &ndash; 17:00)</option>
+                <option>Evening (17:00 &ndash; 20:00)</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your interest or any specific configuration you'd like to discuss."></textarea>
+            </div>
+          </div>
 
-  <!-- ===== SERVICES ===== -->
-  <section class="services" id="services">
-    <div class="section-line"></div>
-    <div class="container">
-      <div class="section-head center reveal">
-        <div class="section-tag center"><span>04</span><i></i>How I can help</div>
-        <h2 class="section-title split-reveal">What I Do</h2>
-      </div>
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">I consent to be contacted by the Pagani Dubai showroom regarding my inquiry.</label>
+          </div>
 
-      <div class="services-grid">
-        <article class="service-card reveal tilt">
-          <span class="service-index">01</span>
-          <h3 class="split-reveal">Web3 Content Creation</h3>
-          <p class="split-reveal">Educational videos, threads, and storytelling content.</p>
-        </article>
+          <div class="form-foot">
+            <span class="form-privacy">Your details are used only to arrange your private viewing.</span>
+            <button type="submit" class="btn btn-primary">Request Private Viewing</button>
+          </div>
 
-        <article class="service-card reveal tilt">
-          <span class="service-index">02</span>
-          <h3 class="split-reveal">Video Production</h3>
-          <p class="split-reveal">High-quality short-form videos for Web3 brands.</p>
-        </article>
-
-        <article class="service-card reveal tilt">
-          <span class="service-index">03</span>
-          <h3 class="split-reveal">Community Growth</h3>
-          <p class="split-reveal">Helping projects connect with users through authentic content.</p>
-        </article>
-
-        <article class="service-card reveal tilt">
-          <span class="service-index">04</span>
-          <h3 class="split-reveal">Campaign Promotion</h3>
-          <p class="split-reveal">Creator-driven marketing campaigns for Web3 ecosystems.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="testimonials" id="testimonials">
-    <div class="section-line"></div>
-    <div class="container">
-      <div class="section-head center reveal">
-        <div class="section-tag center"><span>05</span><i></i>Feedback</div>
-        <h2 class="section-title split-reveal">What People Say</h2>
-      </div>
-
-      <!-- Editable testimonial cards: swap the quote/author text below to add real testimonials -->
-      <div class="testimonial-grid">
-        <blockquote class="testimonial-card reveal tilt" data-editable="testimonial">
-          <span class="quote-mark">&rdquo;</span>
-          <p class="split-reveal">Sharique creates content that makes complex Web3 concepts simple and engaging. His dedication towards quality is impressive.</p>
-          <footer>— Web3 Project Partner</footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card reveal tilt" data-editable="testimonial">
-          <span class="quote-mark">&rdquo;</span>
-          <p class="split-reveal">Working with Sharique helped us reach a wider audience through authentic content and community engagement.</p>
-          <footer>— Campaign Partner</footer>
-        </blockquote>
-
-        <blockquote class="testimonial-card reveal tilt" data-editable="testimonial">
-          <span class="quote-mark">&rdquo;</span>
-          <p class="split-reveal">His understanding of Web3 storytelling and video creation makes him stand out among creators.</p>
-          <footer>— Ecosystem Team</footer>
-        </blockquote>
+          <div class="form-success" id="formSuccess">
+            <span class="check">&#10003;</span>
+            <p><strong>Request received.</strong>Our client relations team will contact you within 24 hours to confirm your private viewing.</p>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -321,46 +543,38 @@
   <section class="contact" id="contact">
     <div class="section-line"></div>
     <div class="container">
-      <div class="contact-inner reveal">
-        <div class="section-tag center"><span>06</span><i></i>Get in touch</div>
-        <h2 class="section-title split-reveal">Let's Build Something Together</h2>
-        <p class="contact-text split-reveal">
-          "Open for collaborations with Web3 protocols, AI projects, and innovative blockchain companies."
-        </p>
+      <div class="contact-inner reveal-el">
+        <div class="section-tag center"><span>07</span><i></i>Contact</div>
+        <h2 class="section-title split-reveal">Get In Touch</h2>
+        <p class="contact-text split-reveal">Whether you&rsquo;re ready to configure your Pagani or simply want to talk engineering &mdash; our Dubai team is here.</p>
 
         <div class="contact-grid">
-          <a class="contact-btn" href="mailto:shariqueaslam38@gmail.com">
-            <span class="contact-index">01</span>
-            <span class="contact-meta">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">shariqueaslam38@gmail.com</span>
-            </span>
+          <a class="contact-btn" href="tel:+97144567890">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1z"/></svg>
+            <span class="contact-meta"><span class="contact-label">Call</span><span class="contact-value">+971 4 456 7890</span></span>
           </a>
 
-          <a class="contact-btn" href="https://x.com/4LizX_Web" target="_blank" rel="noopener">
-            <span class="contact-index">02</span>
-            <span class="contact-meta">
-              <span class="contact-label">X (Twitter)</span>
-              <span class="contact-value">@4LizX_Web</span>
-            </span>
+          <a class="contact-btn" href="https://wa.me/971544567890" target="_blank" rel="noopener">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-3.7-6.7"/><path d="M20 4l-8.2 8.2M17 12a5 5 0 0 1-5 5"/></svg>
+            <span class="contact-meta"><span class="contact-label">WhatsApp</span><span class="contact-value">+971 54 456 7890</span></span>
           </a>
 
-          <a class="contact-btn" href="https://t.me/Lizx_web" target="_blank" rel="noopener">
-            <span class="contact-index">03</span>
-            <span class="contact-meta">
-              <span class="contact-label">Telegram</span>
-              <span class="contact-value">@Lizx_web</span>
-            </span>
+          <a class="contact-btn" href="mailto:concierge@pagani-dubai.ae">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+            <span class="contact-meta"><span class="contact-label">Email</span><span class="contact-value">concierge@pagani-dubai.ae</span></span>
           </a>
 
-          <button class="contact-btn contact-btn-copy" type="button" data-copy="4LizX_Web">
-            <span class="contact-index">04</span>
-            <span class="contact-meta">
-              <span class="contact-label">Discord</span>
-              <span class="contact-value">@4LizX_Web</span>
-            </span>
-            <span class="copy-hint">Click to copy</span>
-          </button>
+          <a class="contact-btn" href="https://www.google.com/maps/search/?api=1&query=Sheikh+Zayed+Road+Al+Quoz+Dubai" target="_blank" rel="noopener">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11a7 7 0 1 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <span class="contact-meta"><span class="contact-label">Visit</span><span class="contact-value">Sheikh Zayed Road, Dubai</span></span>
+          </a>
+        </div>
+
+        <div class="social-row">
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="#" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+          <a href="#" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
         </div>
       </div>
     </div>
@@ -371,16 +585,15 @@
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="container footer-inner">
-    <a href="#home" class="brand brand-sm">
-      <span class="brand-mark">◆</span>
-      <span class="brand-text">4LizX<span class="accent">_Web</span></span>
-    </a>
-    <p class="footer-copy">© <span id="year"></span> Sharique Ahmad. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://x.com/4LizX_Web" target="_blank" rel="noopener" aria-label="X profile">X</a>
-      <a href="https://t.me/Lizx_web" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
-      <a href="mailto:shariqueaslam38@gmail.com" aria-label="Email">Mail</a>
+    <div>
+      <a href="#home" class="brand">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 L21 20 L3 20 Z" /></svg></span>
+        <span class="brand-text">PAGANI<small>DUBAI SHOWROOM</small></span>
+      </a>
+      <p class="footer-copy">&copy; <span id="year"></span> Pagani Dubai Showroom. All rights reserved.</p>
+      <p class="footer-legal">Concept showroom experience built for demonstration purposes. Vehicle imagery shown is placeholder artwork pending official photography. Pagani and associated model names are trademarks of Pagani Automobili S.p.A.</p>
     </div>
+    <button class="footer-top" id="backToTop" aria-label="Back to top">&#8593;</button>
   </div>
 </footer>
 
